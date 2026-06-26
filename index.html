@@ -99,7 +99,6 @@
                 radial-gradient(ellipse at 50% 50%, rgba(116, 185, 255, 0.04) 0%, transparent 60%);
         }
 
-        /* شريط التمرير المخصص */
         ::-webkit-scrollbar {
             width: 6px;
             height: 6px;
@@ -117,7 +116,6 @@
             background: var(--text-muted);
         }
 
-        /* تأثير الظهور التدريجي */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -145,14 +143,6 @@
             }
             50% {
                 box-shadow: 0 0 0 12px rgba(108, 92, 231, 0);
-            }
-        }
-        @keyframes shimmer {
-            0% {
-                background-position: -200% center;
-            }
-            100% {
-                background-position: 200% center;
             }
         }
         @keyframes floatUpDown {
@@ -189,7 +179,6 @@
             transition: all var(--transition-smooth);
         }
 
-        /* تبويبات محسنة */
         .nav-pills {
             gap: 6px;
             padding: 8px !important;
@@ -241,7 +230,6 @@
             opacity: 1;
         }
 
-        /* كروت زجاجية محسنة */
         .glass-card {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
@@ -285,7 +273,6 @@
             background: linear-gradient(135deg, #636e72, #b2bec3);
         }
 
-        /* شريط الإيمان المتحرك */
         .marquee-container {
             overflow: hidden;
             white-space: nowrap;
@@ -312,7 +299,6 @@
             }
         }
 
-        /* شاشة القفل */
         #lockScreen {
             position: fixed;
             top: 0;
@@ -384,7 +370,32 @@
             animation: fadeInUp 0.4s ease-out;
         }
 
-        /* صندوق النصائح */
+        /* نصيحة التصدير */
+        .export-reminder {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            border: 2px solid #ff9800;
+            border-radius: var(--radius-lg);
+            padding: 12px 16px;
+            margin-bottom: 16px;
+            color: #e65100;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 2px 10px rgba(255, 152, 0, 0.2);
+            animation: pulseGlow 2s infinite;
+        }
+        [data-bs-theme="dark"] .export-reminder {
+            background: linear-gradient(135deg, #3e2a14, #4a3218);
+            border-color: #ff9800;
+            color: #ffb74d;
+        }
+        .export-reminder i {
+            font-size: 1.5rem;
+            color: #ff9800;
+        }
+
         .tips-box {
             background: var(--accent-soft);
             border-left: 4px solid var(--accent);
@@ -414,7 +425,6 @@
             letter-spacing: 0.02em;
         }
 
-        /* تحسينات الأزرار */
         .btn {
             border-radius: var(--radius-md) !important;
             font-weight: 600;
@@ -489,7 +499,6 @@
             border-radius: var(--radius-md) 0 0 var(--radius-md) !important;
         }
 
-        /* الهيدر */
         .bg-body-tertiary {
             background: var(--card-bg) !important;
             border-radius: var(--radius-xl) !important;
@@ -498,7 +507,6 @@
             transition: all var(--transition-smooth);
         }
 
-        /* الفورم */
         .form-control,
         .form-select {
             border-radius: var(--radius-md) !important;
@@ -524,7 +532,6 @@
             font-size: 0.9rem;
         }
 
-        /* الجداول */
         .table {
             border-radius: var(--radius-lg);
             overflow: hidden;
@@ -569,7 +576,6 @@
             box-shadow: var(--shadow-sm);
         }
 
-        /* بطاقات التقدم */
         .progress {
             background: var(--border-light);
             border-radius: 20px;
@@ -584,7 +590,6 @@
             transition: width var(--transition-smooth);
         }
 
-        /* البادج */
         .badge {
             font-weight: 600;
             padding: 6px 12px;
@@ -594,7 +599,6 @@
             transition: all var(--transition-fast);
         }
 
-        /* المودال */
         .modal-content {
             border-radius: var(--radius-xl);
             border: 1px solid var(--card-border);
@@ -631,7 +635,6 @@
             border-radius: var(--radius-md) !important;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .tab-content {
                 padding: 16px 12px;
@@ -658,7 +661,6 @@
             }
         }
 
-        /* طباعة */
         @media print {
             #lockScreen,
             #mainTabs,
@@ -668,7 +670,8 @@
             .footer-text,
             .tips-box,
             .btn-group,
-            #liveDateTime {
+            #liveDateTime,
+            .export-reminder {
                 display: none !important;
             }
             .tab-pane {
@@ -738,6 +741,13 @@
         <div class="tab-content">
             <div class="tab-pane fade show active" id="dashboardTab" role="tabpanel">
                 <div id="todayAlertBox"></div>
+
+                <!-- تنبيه تصدير البيانات المضاف هنا -->
+                <div class="export-reminder">
+                    <i class="bi bi-cloud-upload-fill"></i>
+                    <span><strong>تذكير مهم:</strong> لا تنس تصدير نسخة احتياطية من بياناتك بعد كل تعديل! استخدم زر <b>"تصدير البيانات"</b> لحفظ ملف JSON آمن على جهازك.</span>
+                </div>
+
                 <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
                     <div class="btn-group">
                         <button class="btn btn-sm btn-primary active" id="btnMonthly" onclick="changeDashboardView('monthly')"><i class="bi bi-calendar3"></i> عرض شهري</button>
@@ -846,7 +856,7 @@
             <p id="financialTipText" class="mb-0 fs-6 fw-semibold" style="color:var(--text-secondary);">جاري اختيار نصيحة مالية من أجلك...</p>
         </div>
 
-        <div class="footer-text">Made with♥️by <strong>Mohammed Hussein 2026</strong></div>
+        <div class="footer-text">Made with ♥️ by <strong>Mohammed Hussein 2026</strong></div>
     </div>
 
     <div class="modal fade" id="formModal" tabindex="-1" aria-hidden="true">

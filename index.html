@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>EgyUp - المنظومة المالية الاحترافية</title>
+
+ <title>EgyUp - المنظومة المالية الاحترافية</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css">
@@ -193,20 +194,6 @@
             }
         }
 
-        #lockScreen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--bg-primary);
-            z-index: 10000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(20px);
-        }
-
         .btn {
             border-radius: var(--radius-md) !important;
             font-weight: 600;
@@ -302,7 +289,6 @@
             border: 2px dashed var(--border-color);
         }
 
-        /* إضافات للتبويب الجديد (نصائح) */
         .tips-section {
             display: flex;
             flex-direction: column;
@@ -346,7 +332,6 @@
             font-size: 1.1rem;
         }
 
-        /* إضافات للتبويب من نحن */
         .about-section {
             display: flex;
             flex-direction: column;
@@ -391,26 +376,8 @@
     </style>
 </head>
 <body>
-    <div id="lockScreen">
-        <div class="text-center p-4 shadow rounded bg-body"
-            style="max-width: 400px; width: 92%; background:var(--card-bg); border-radius:var(--radius-xl);">
-            <div class="mb-3"><img src="https://i.ibb.co/9mj4x6NH/Chat-GPT-Image-26-2026-06-28-40.png" alt="EgyUp Logo"
-                    style="width:110px;height:auto;border-radius:20px;"></div>
-            <h3 class="mt-2 fw-bold" id="lockTitle" style="color: var(--accent);">EgyUp المالي</h3>
-            <p class="text-muted small mb-3">يرجى إدخال اسم المستخدم وكلمة المرور للوصول لحساباتك</p>
-            <input type="text" id="lockUsername" class="form-control text-center mb-2" placeholder="اسم المستخدم"
-                autocomplete="off">
-            <input type="password" id="lockPassword" class="form-control text-center mb-3" placeholder="كلمة المرور"
-                autocomplete="off">
-            <button id="lockSubmit" class="btn btn-primary w-100 py-2 fw-bold">تسجيل الدخول</button>
-            <div id="lockError" class="alert alert-danger mt-3 small hidden" style="border-radius:12px;">اسم المستخدم أو كلمة
-                المرور خاطئة!</div>
-            <button class="btn btn-link btn-sm text-danger mt-4 d-block w-100"
-                onclick="localStorage.clear();location.reload();">تصفير الذاكرة والكاش المعطوب</button>
-        </div>
-    </div>
 
-    <div id="mainApp" class="container my-4 hidden">
+    <div id="mainApp" class="container my-4">
         <div class="marquee-container">
             <div class="marquee-content">الله أكبر • الحمد لله • سبحان الله وبحمده • لا إله إلا الله • اللهم صلِّ وسلم على
                 نبينا محمد ﷺ • لا حول ولا قوة إلا بالله</div>
@@ -426,9 +393,6 @@
             </div>
             <div class="d-flex align-items-center gap-3"><span id="liveDateTime" class="badge py-2 px-3 small"
                     style="background:var(--bg-secondary);color:var(--text-secondary);border-radius:20px;"></span><button
-                    class="btn btn-outline-secondary rounded-circle p-2" onclick="editCredentials()"
-                    title="تعديل بيانات الدخول" style="width:40px;height:40px;"><i
-                        class="bi bi-gear-fill"></i></button><button
                     class="btn btn-outline-secondary rounded-circle p-2" id="darkModeBtn" onclick="toggleTheme()"
                     style="width:40px;height:40px;"><i class="bi bi-moon-fill"></i></button></div>
         </div>
@@ -461,11 +425,9 @@
             <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="pill"
                     data-bs-target="#memoTab" type="button" role="tab"><i class="bi bi-pencil-square"></i> مذكرات</button>
             </li>
-            <!-- التبويب الجديد: نصائح ذهبية -->
             <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="pill"
                     data-bs-target="#tipsTab" type="button" role="tab"><i class="bi bi-lightbulb-fill"></i> نصائح
                     ذهبية</button></li>
-            <!-- التبويب الجديد: من نحن وتواصل -->
             <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="pill"
                     data-bs-target="#aboutTab" type="button" role="tab"><i class="bi bi-info-circle-fill"></i> من نحن
                     وتواصل</button></li>
@@ -722,7 +684,6 @@
                         onclick="saveMemoData()"><i class="bi bi-floppy-fill"></i> حفظ المذكرة الآن</button></div>
             </div>
 
-            <!-- تبويب النصائح الذهبية -->
             <div class="tab-pane fade" id="tipsTab" role="tabpanel">
                 <div class="tips-section">
                     <div class="tips-card">
@@ -761,14 +722,13 @@
                 </div>
             </div>
 
-            <!-- تبويب من نحن وتواصل -->
             <div class="tab-pane fade" id="aboutTab" role="tabpanel">
                 <div class="about-section">
                     <div class="about-card">
                         <div class="about-icon"><i class="bi bi-people-fill"></i></div>
                         <h5 class="fw-bold">من نحن</h5>
                         <p style="color:var(--text-secondary);">
-                            <strong>EgyUp</strong> هو منظومة مالية احترافية صُممت خصيصاً للفرد المصري والعربي،
+                            <strong>EgyUp - المنظومة المالية الاحترافية</strong> هو منظومة مالية احترافية صُممت خصيصاً للفرد المصري والعربي،
                             بهدف مساعدتك على إدارة أموالك بذكاء ووعي. نؤمن بأن التخطيط المالي الجيد هو أساس
                             الاستقرار والحرية، ولذلك وفرنا لك أدوات متكاملة لتتبع الأقساط، المصروفات، البطاقات،
                             الدخل، الادخار، والديون المجدولة – كل ذلك في مكان واحد سهل الاستخدام.
@@ -792,7 +752,7 @@
 
         <div class="tips-box shadow-sm"
             style="background:var(--accent-soft);border-left:4px solid var(--accent);padding:18px 20px;border-radius:var(--radius-lg);margin-top:24px;text-align:center;">
-            <h6 class="fw-bold mb-1"><i class="bi bi-lightbulb-fill"></i> نصيحة EgyUp المالية الذكية:</h6>
+            <h6 class="fw-bold mb-1"><i class="bi bi-lightbulb-fill"></i> نصيحة مالية ذكية:</h6>
             <p id="financialTipText" class="mb-0 fs-6 fw-semibold" style="color:var(--text-secondary);">جاري اختيار نصيحة
                 مالية من أجلك...</p>
         </div>
@@ -994,58 +954,6 @@
                 Array.isArray(data.scheduledDebts);
         }
 
-        function initSecurityGate() {
-            let u = localStorage.getItem('egyup_username');
-            let p = localStorage.getItem('egyup_password');
-            if (!p) {
-                let old = localStorage.getItem('egyup_app_secure_key');
-                if (old) { p = old;
-                    localStorage.setItem('egyup_password', p);
-                    localStorage.removeItem('egyup_app_secure_key'); }
-            }
-            if (!u) { u = 'admin';
-                localStorage.setItem('egyup_username', u); }
-            const isFirst = !p;
-            document.getElementById('lockTitle').textContent = isFirst ? 'إنشاء حساب جديد' : 'EgyUp المالي';
-            document.getElementById('lockSubmit').textContent = isFirst ? 'إنشاء الحساب' : 'تسجيل الدخول';
-            if (!isFirst) document.getElementById('lockUsername').value = u;
-            document.getElementById('lockSubmit').onclick = () => {
-                let user = document.getElementById('lockUsername').value.trim();
-                let pass = document.getElementById('lockPassword').value.trim();
-                if (!user || !pass) return;
-                if (isFirst) {
-                    localStorage.setItem('egyup_username', user);
-                    localStorage.setItem('egyup_password', pass);
-                    unlockDashboard();
-                } else {
-                    if (user === u && pass === p) unlockDashboard();
-                    else {
-                        document.getElementById('lockError').classList.remove('hidden');
-                        setTimeout(() => document.getElementById('lockError').classList.add(
-                        'hidden'), 2500);
-                    }
-                }
-            };
-        }
-
-        function editCredentials() {
-            let cp = prompt("كلمة المرور الحالية:");
-            if (!cp) return;
-            if (cp !== localStorage.getItem('egyup_password')) { alert("❌ غير صحيحة!");
-                return; }
-            let nu = prompt("اسم المستخدم الجديد:", localStorage.getItem('egyup_username'));
-            if (!nu) return;
-            let np = prompt("كلمة المرور الجديدة:");
-            if (!np) return;
-            let con = prompt("تأكيد كلمة المرور:");
-            if (con !== np) { alert("❌ غير متطابقة!");
-                return; }
-            localStorage.setItem('egyup_username', nu.trim());
-            localStorage.setItem('egyup_password', np.trim());
-            alert("✅ تم التحديث. سيتم إعادة التحميل.");
-            location.reload();
-        }
-
         function showAutoAlerts() {
             let now = new Date();
             let todayDay = now.getDate();
@@ -1105,9 +1013,8 @@
             }, 60000);
         }
 
-        function unlockDashboard() {
-            document.getElementById('lockScreen').classList.add('hidden');
-            document.getElementById('mainApp').classList.remove('hidden');
+        // تم إلغاء دالة unlockDashboard و initSecurityGate، وأصبح التطبيق يبدأ مباشرة
+        function initializeApp() {
             let now = new Date();
             document.getElementById('filterMonth').value = now.getMonth() + 1;
             document.getElementById('filterYear').value = now.getFullYear();
@@ -1777,11 +1684,9 @@
                 try {
                     let parsed = JSON.parse(e.target.result);
                     if (validateImportData(parsed)) {
-                        // الاحتفاظ بالمذكرة من الملف المستورد إذا كانت موجودة
                         if (typeof parsed.memo === 'string') {
                             appData = parsed;
                         } else {
-                            // إذا لم تكن المذكرة موجودة في الملف، نحافظ على المذكرة الحالية
                             let currentMemo = appData.memo || '';
                             appData = parsed;
                             appData.memo = currentMemo;
@@ -1800,12 +1705,14 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             startClock();
-            initSecurityGate();
+            // إزالة استدعاء initSecurityGate، وبدء التطبيق مباشرة
             let savedTheme = localStorage.getItem('egyup_theme_choice') || 'light';
             document.documentElement.setAttribute('data-bs-theme', savedTheme);
             document.getElementById('darkModeBtn').innerHTML = savedTheme === 'dark' ?
                 '<i class="bi bi-sun-fill text-warning"></i>' : '<i class="bi bi-moon-fill"></i>';
             lastExportTime = parseInt(localStorage.getItem('egyup_last_export_time')) || null;
+            // تشغيل التطبيق مباشرة
+            initializeApp();
         });
     </script>
 </body>
